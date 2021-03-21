@@ -5,8 +5,8 @@ require "./app"
 RSpec.describe Order do
   let(:line_items) do
     [
-      { quantity: 1, description: "book", price: 12.49 },
-      { quantity: 1, description: "chocolates", price: 0.85 }
+      { quantity: 1, product: "book", price: 12.49 },
+      { quantity: 1, product: "chocolates", price: 0.85 }
     ]
   end
 

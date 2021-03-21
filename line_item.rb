@@ -6,20 +6,20 @@ class LineItem
   IMPORTED_FLAG = /imported/
   IMPORTED_MARKUP = 0.05
 
-  attr_reader :description, :price, :quantity
+  attr_reader :price, :product, :quantity
 
-  def initialize(description:, price:, quantity:)
-    @description = description
+  def initialize(product:, price:, quantity:)
+    @product = product
     @price = price
     @quantity = quantity
   end
 
   def gst_excluded?
-    description.match?(GST_EXCLUSIONARY_LIST)
+    product.match?(GST_EXCLUSIONARY_LIST)
   end
 
   def imported?
-    description.match?(IMPORTED_FLAG)
+    product.match?(IMPORTED_FLAG)
   end
 
   def sales_taxes
