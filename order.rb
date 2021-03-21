@@ -22,14 +22,20 @@ class Order
 
     output = CSV.open("./public/#{filename}.csv", "wb") do |csv|
       line_items.each do |line_item|
-        csv << [line_item.quantity.to_i, line_item.product, line_item.total]
+        csv << [line_item.quantity.to_i, line_item.product, to_currency_s(line_item.total)]
       end
 
       csv << []
-      csv << ["Sales Taxes: #{sprintf('%.2f', sales_taxes)}"]
-      csv << ["Total: #{sprintf('%.2f', total)}"]
+      csv << ["Sales Taxes: #{to_currency_s(sales_taxes)}"]
+      csv << ["Total: #{to_currency_s(total)}"]
     end
 
     output.path
+  end
+
+  private
+
+  def to_currency_s(amount)
+    sprintf('%.2f', amount)
   end
 end
