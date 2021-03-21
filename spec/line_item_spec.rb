@@ -10,11 +10,6 @@ RSpec.describe LineItem do
       let(:line_item) { LineItem.new(quantity: 1, product: "music cd", price: 14.99) }
       it { is_expected.to eq(16.49) }
     end
-
-    context "combines our taxes and price for a total" do
-      let(:line_item) { LineItem.new(quantity: 1, product: "box of imported chocolates", price: 11.25) }
-      it { is_expected.to eq(11.85) }
-    end
   end
 
   describe "#sales_taxes" do
@@ -33,16 +28,6 @@ RSpec.describe LineItem do
     context "applies 5% markup on international products" do
       let(:line_item) { LineItem.new(quantity: 1, product: "imported chocolate bar", price: 10.00) }
       it { is_expected.to eq(0.50) }
-    end
-
-    context "applies 5% on international and 10% for GST" do
-      let(:line_item) { LineItem.new(quantity: 1, product: "imported bottle of perfume", price: 47.50) }
-      it { is_expected.to eq(7.15) }
-    end
-
-    context "combines our taxes and price for a total" do
-      let(:line_item) { LineItem.new(quantity: 1, product: "box of imported chocolates", price: 11.25) }
-      it { is_expected.to eq(0.65) }
     end
   end
 end

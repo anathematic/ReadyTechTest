@@ -27,7 +27,9 @@ class LineItem
     tax += price * GST_MARKUP unless gst_excluded?
     tax += price * IMPORTED_MARKUP if imported?
 
-    (tax * 20).round.to_f / 20
+    # Rounding to the nearest 10 unit,
+    #   eg: 1266.ceil(-1) => 1270
+    (tax * 100).ceil(-1) / 100.0
   end
 
   def total
