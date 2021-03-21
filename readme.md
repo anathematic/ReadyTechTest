@@ -13,4 +13,5 @@ Using [IRB](https://github.com/ruby/irb), include the main `./app` directory and
 ```
 require './app'
 process("./some-csv.csv")
+# We'll respond with the path where it goes
 ```
