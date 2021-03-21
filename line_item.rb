@@ -2,7 +2,7 @@
 
 class LineItem
   GST_MARKUP = 0.10
-  GST_EXCLUSIONARY_LIST = /chocolate|book/
+  GST_EXCLUSIONARY_LIST = /book|chocolate|pills/
   IMPORTED_FLAG = /imported/
   IMPORTED_MARKUP = 0.05
 
