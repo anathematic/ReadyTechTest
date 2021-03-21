@@ -3,8 +3,8 @@
 require "./app"
 
 RSpec.describe LineItem do
-  describe "#total_with_tax" do
-    subject { line_item.total_with_tax }
+  describe "#total" do
+    subject { line_item.total }
 
     context "combines our taxes and price for a total" do
       let(:line_item) { LineItem.new(quantity: 1, description: "music cd", price: 14.99) }
@@ -12,8 +12,8 @@ RSpec.describe LineItem do
     end
   end
 
-  describe "#tax" do
-    subject { line_item.tax }
+  describe "#sales_taxes" do
+    subject { line_item.sales_taxes }
 
     context "applies 10% markup on regular products" do
       let(:line_item) { LineItem.new(quantity: 1, description: "music cd", price: 14.99) }

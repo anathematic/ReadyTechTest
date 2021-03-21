@@ -2,7 +2,7 @@
 
 class LineItem
   GST_MARKUP = 0.10
-  GST_EXCLUSIONARY_LIST = /chocolate|books/
+  GST_EXCLUSIONARY_LIST = /chocolate|book/
   IMPORTED_FLAG = /imported/
   IMPORTED_MARKUP = 0.05
 
@@ -22,14 +22,14 @@ class LineItem
     description.match?(IMPORTED_FLAG)
   end
 
-  def tax
+  def sales_taxes
     tax = 0
     tax =+ price * GST_MARKUP unless gst_excluded?
     tax =+ price * IMPORTED_MARKUP if imported?
     tax.round(2)
   end
 
-  def total_with_tax
-    (price + tax).round(2)
+  def total
+    (price + sales_taxes).round(2)
   end
 end
