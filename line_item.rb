@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class LineItem
-  GST_MARKUP = 1.1
+  GST_MARKUP = 0.10
   GST_EXCLUSIONARY_LIST = /chocolate|books/
   IMPORTED_FLAG = /imported/
-  IMPORTED_MARKUP = 1.05
+  IMPORTED_MARKUP = 0.05
 
   attr_reader :description, :price, :quantity
 
@@ -22,10 +22,14 @@ class LineItem
     description.match?(IMPORTED_FLAG)
   end
 
-  def total_with_taxes
-    total = price
-    total = total * GST_MARKUP unless gst_excluded?
-    total = total * IMPORTED_MARKUP if imported?
-    total.round(2)
+  def tax
+    tax = 0
+    tax =+ price * GST_MARKUP unless gst_excluded?
+    tax =+ price * IMPORTED_MARKUP if imported?
+    tax.round(2)
+  end
+
+  def total_with_tax
+    (price + tax).round(2)
   end
 end
