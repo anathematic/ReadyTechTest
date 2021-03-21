@@ -2,7 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "rspec"
+group :development do
+  gem "rspec"
 
-gem "rubocop", "< 0.68"
-gem "rubocop-github"
+  gem "rubocop", "< 0.68"
+  gem "rubocop-github"
+end
