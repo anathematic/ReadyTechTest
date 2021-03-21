@@ -22,7 +22,7 @@ class Order
 
     output = CSV.open("./public/#{filename}.csv", "wb") do |csv|
       line_items.each do |line_item|
-        csv << [line_item.quantity, line_item.product, line_item.total]
+        csv << [line_item.quantity.to_i, line_item.product, line_item.total]
       end
 
       csv << []
