@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "csv"
+
 class Order
   attr_accessor :line_items
 
@@ -13,5 +15,10 @@ class Order
 
   def total
     line_items.sum(&:total)
+  end
+
+  def self.from_csv(csv_path)
+    line_items = CsvToLineItems.to_line_items(csv_path)
+    new line_items
   end
 end

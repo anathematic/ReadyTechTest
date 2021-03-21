@@ -23,4 +23,14 @@ RSpec.describe Order do
 
     it { is_expected.to eq(0) }
   end
+
+  describe ".from_csv" do
+    let(:order) { Order.from_csv("./spec/fixtures/input_1.csv") }
+
+    context "initialize an order from a CSV file" do
+      subject { order.total }
+
+      it { is_expected.to eq(29.83) }
+    end
+  end
 end
