@@ -17,8 +17,19 @@ class Order
     line_items.sum(&:total)
   end
 
-  def self.from_csv(csv_path)
-    line_items = CsvToLineItems.to_line_items(csv_path)
-    new line_items
+  def to_receipt
+    filename = Time.now.strftime("%Y-%m-%d-%H-%M-%S")
+
+    output = CSV.open("./public/#{filename}.csv", "wb") do |csv|
+      line_items.each do |line_item|
+        csv << [line_item.quantity, line_item.product, line_item.total]
+      end
+
+      csv << []
+      csv << ["Sales Taxes: #{sprintf('%.2f', sales_taxes)}"]
+      csv << ["Total: #{sprintf('%.2f', total)}"]
+    end
+
+    output.path
   end
 end
