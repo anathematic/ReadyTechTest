@@ -36,6 +36,6 @@ class Order
   private
 
   def to_currency_s(amount)
-    sprintf('%.2f', amount)
+    sprintf("%.2f", amount)
   end
 end
