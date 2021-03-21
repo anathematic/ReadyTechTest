@@ -24,9 +24,10 @@ class LineItem
 
   def sales_taxes
     tax = 0
-    tax =+ price * GST_MARKUP unless gst_excluded?
-    tax =+ price * IMPORTED_MARKUP if imported?
-    tax.round(2)
+    tax += price * GST_MARKUP unless gst_excluded?
+    tax += price * IMPORTED_MARKUP if imported?
+
+    (tax * 20).round.to_f / 20
   end
 
   def total

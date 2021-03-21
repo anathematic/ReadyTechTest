@@ -29,5 +29,10 @@ RSpec.describe LineItem do
       let(:line_item) { LineItem.new(quantity: 1, product: "imported chocolate bar", price: 10.00) }
       it { is_expected.to eq(0.50) }
     end
+
+    context "applies 5% on international and 10% for GST" do
+      let(:line_item) { LineItem.new(quantity: 1, product: "imported bottle of perfume", price: 47.50) }
+      it { is_expected.to eq(7.15) }
+    end
   end
 end
